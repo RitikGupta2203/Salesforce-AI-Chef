@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionIdentifier>uZ+D3GqRuGk/s5BewMMrhKGNsdv2Ht2HbfEFjEAiiV8=_1</activeVersionIdentifier>
+    <description>AI recipe Generator</description>
+    <developerName>Recipe_Generator</developerName>
+    <masterLabel>Recipe Generator</masterLabel>
+    <templateVersions>
+        <content>You are a professional chef specialising in creative cooking. Generate 3 different recipes based on these parameters:
+
+Ingredients available:{!$Input:Ingredients}
+Dietary restrictions: {!$Input:Dietary_Restrictions}
+Meal type: {!$Input:Meal_Type}
+Servings: {!$Input:Serving_Size}
+
+
+Return your response in the following JSON format for easy HTML rendering:
+{
+  &quot;recipes&quot;:[
+    {
+      &quot;recipe_number&quot;:&quot;1&quot;,
+      &quot;servings&quot;:&quot;1&quot;,
+      &quot;recipe_name&quot;:&quot;Name of recipe 1&quot;,
+      &quot;description&quot;:&quot;Breif 1-2 sentence description of the dish&quot;,
+      &quot;prep_time&quot;:&quot;Time in minutes&quot;,
+      &quot;cook_time&quot;:&quot;Time in minutes&quot;,
+      &quot;total_time&quot;:&quot;Time in minutes&quot;,
+      &quot;difficulty&quot;:&quot;Easy/Medium/Hard&quot;,
+      &quot;ingredients&quot;:[
+        {
+          &quot;amount&quot;:&quot;quantity&quot;,
+          &quot;unit&quot;:&quot;measuring unit&quot;,
+          &quot;name&quot;:&quot;ingredient name&quot;
+        },
+        {
+          &quot;amount&quot;:&quot;quantity&quot;,
+          &quot;unit&quot;:&quot;measuring unit&quot;,
+          &quot;name&quot;:&quot;ingredient name&quot;
+        }
+      ],
+      &quot;instructions&quot;:[
+        &quot;step1 instruction&quot;,
+        &quot;step2 instruction&quot;
+      ],
+      &quot;tips&quot;:&quot;Optional cooking or serving tip&quot;,
+      &quot;tags&quot;:[&quot;tag1&quot;, &quot;tag2&quot;]
+    }
+  ]
+}
+
+</content>
+        <inputs>
+            <apiName>Ingredients</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>Ingredients</masterLabel>
+            <referenceName>Input:Ingredients</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Dietary_Restrictions</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>Dietary Restrictions</masterLabel>
+            <referenceName>Input:Dietary_Restrictions</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Meal_Type</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>Meal Type</masterLabel>
+            <referenceName>Input:Meal_Type</referenceName>
+            <required>true</required>
+        </inputs>
+        <inputs>
+            <apiName>Serving_Size</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>Serving Size</masterLabel>
+            <referenceName>Input:Serving_Size</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultGPT41</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>uZ+D3GqRuGk/s5BewMMrhKGNsdv2Ht2HbfEFjEAiiV8=_1</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>
