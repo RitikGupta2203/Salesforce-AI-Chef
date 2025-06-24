@@ -1,0 +1,14 @@
+.app-container{
+    background: #f9fafb;
+}
+
+.slds-box{
+    background: #ffffff;
+}
+
+.tips{
+    background: #f9fafb;
+    padding:12px;
+    border-radius:5px;
+    border-shadow: 1px 1px 5px #cdcdcd;
+}
