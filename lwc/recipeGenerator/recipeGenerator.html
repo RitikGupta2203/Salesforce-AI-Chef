@@ -1,0 +1,91 @@
+<template>
+    <div class ="slds-var-p-around_medium app-container">
+        <lightning-layout multiple-row = "true">
+            <lightning-layout-item size ="12" medium-device-size="4" padding = "horizontal-small">
+                <c-recipe-form ongenerate={generateRecipes}></c-recipe-form> 
+                
+                <template lwc:if={error}>
+                    <div class="slds-notify slds-notify_alert slds-alert_error" role = "alert">
+                         <h2>{error}</h2>
+                    </div>
+                </template>
+                   
+                
+            </lightning-layout-item>
+             <lightning-layout-item size ="12" medium-device-size="8" padding = "horizontal-small">
+                    <template for:each={recipes} for:item = recipe>
+                        <div key ={recipe.recipe_name} class ="slds-box slds-var-m-bottom_medium">
+                            <h2 class ="slds-text-heading_large">{recipe.recipe_name}</h2>
+                            <p class ="slds-var-p-vertical_small">{recipe.recipe_name}</p>
+                            <template for:each={recipe.tags} for:item="tag">
+                                <lightning-badge key = {tag} label = {tag} class="slds-badge_inverse slds-var-m-vertical_medium">
+                                </lightning-badge>
+                                <!-- Recipe Stat box -->
+                            </template>
+                            <lightning-layout vertical-align="center" multiple-rows="true">
+                                <lightning-layout-item size="3"    padding="around-small">
+                                    <c-recipe-stat-box title="Prep Time" value={recipe.prep_time} icon-name="utility:clock"></c-recipe-stat-box>
+                                </lightning-layout-item>
+                                <lightning-layout-item size="3"    padding="around-small">
+                                    <c-recipe-stat-box title="Cook Time" value={recipe.cook_time} icon-name="utility:real_time"></c-recipe-stat-box>
+                                </lightning-layout-item>
+                                <lightning-layout-item size="3"    padding="around-small">
+                                     <c-recipe-stat-box title="Difficulty" value={recipe.difficulty} icon-name="utility:data_model"></c-recipe-stat-box>                     
+                                </lightning-layout-item>
+                                <lightning-layout-item size="3"    padding="around-small">
+                                    <c-recipe-stat-box title="Servings" value={recipe.servings} icon-name="utility:user"></c-recipe-stat-box>
+                                </lightning-layout-item>
+                                </lightning-layout>
+
+                                <!-- Instructions and Ingredients -->
+                                <lightning-layout multiple-rows="true">
+                                    <lightning-layout-item size="5"    padding="around-small">
+                                        <h3 class ="slds-text-heading_small slds-var-p-bottom_small slds-border_bottom">Ingredients</h3>
+                                        <ul class="slds-list_dotted">
+                                            <template for:each={recipe.ingredients} for:item="ingredient">
+                                                <li key={ingredient.name} class = "slds-var-p-vertical_x-small">
+                                                    <div class ="slds-grid">
+                                                        <div class ="slds-col slds-size_2-of-4">
+                                                            <strong>{ingredient.amount} {ingredient.unit}</strong>
+
+                                                        </div>
+                                                        <div class ="slds-col slds-size_2-of-4">
+                                                            {ingredient.name}
+                                                        </div>
+                                                    </div>
+                                                </li>
+
+                                            </template>
+                                        </ul>
+                                            </lightning-layout-item>
+                                            <lightning-layout-item size="7"    padding="around-small">
+                                                <h3 class ="slds-text-heading_small slds-var-p-bottom_small slds-border_bottom">Instructions</h3>
+                                                 <ol class="slds-list_ordered">
+                                            <template for:each={recipe.instructions} for:item="instruction">
+                                                <li key={instruction} class = "slds-var-p-vertical_x-small">
+                                                   {instruction}
+                                                </li>
+                                            </template>
+                                        </ol>
+                                    </lightning-layout-item> 
+                                </lightning-layout>
+                                
+                                <!-- Chef Tip -->
+                                <div class = "tips">
+                                    <div class= "slds-grid">
+                                        <lightning-icon icon-name="utility:light_bulb" size="small"></lightning-icon>
+                                        <h3 class= "slds-text-heading_small">Chef's Tips</h3>
+                                    </div>
+                                    <p>{recipe.tips}</p>
+                                    </div>
+                               
+                    
+                        </div>
+                    </template>
+                    <template lwc:if={isGenerating}>
+                        <lightning-spinner size="medium"></lightning-spinner>
+                    </template>
+            </lightning-layout-item>
+        </lightning-layout>
+    </div>
+</template>
